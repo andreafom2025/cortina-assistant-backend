@@ -24,7 +24,7 @@ class QueryRequest(BaseModel):
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 embeddings = OpenAIEmbeddings()
-vectorstore = FAISS.load_local("faiss_cortina_index", embeddings)
+vectorstore = FAISS.load_local("faiss_cortina_index", embeddings, allow_dangerous_deserialization=True)
 llm = OpenAI(temperature=0.3)
 chain = load_qa_chain(llm, chain_type="stuff")
 
